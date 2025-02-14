@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 import joblib
 import numpy as np
+import os
+
 
 # Initialize the Flask app
 app = Flask(__name__)
