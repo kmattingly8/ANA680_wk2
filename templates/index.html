@@ -4,48 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breast Cancer Prediction</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Title heading */
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        /* Sub-heading */
+        h3 {
+            text-align: center;
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* Form Styles */
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group input[type="text"] {
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Enter Patient Information</h2>
-    <form method="POST" action="/predict">
-        <label for="Clump_thickness">Clump Thickness:</label>
-        <input type="text" name="Clump_thickness" required><br>
 
-        <label for="Uniformity_of_cell_size">Uniformity of Cell 
+    <div class="container">
+        <!-- Title and Sub-heading -->
+        <h1>Breast Cancer Prediction Model</h1>
+        <h3>Directions: Enter patient information into the fields 
+below.</h3>
+
+        <!-- Form for patient information -->
+        <form method="POST" action="/predict">
+            <div class="form-group">
+                <label for="Clump_thickness">Clump Thickness:</label>
+                <input type="text" name="Clump_thickness" required 
+placeholder="Enter value for Clump Thickness">
+            </div>
+
+            <div class="form-group">
+                <label for="Uniformity_of_cell_size">Uniformity of Cell 
 Size:</label>
-        <input type="text" name="Uniformity_of_cell_size" required><br>
+                <input type="text" name="Uniformity_of_cell_size" required 
+placeholder="Enter value for Uniformity of Cell Size">
+            </div>
 
-        <label for="Uniformity_of_cell_shape">Uniformity of Cell 
+            <div class="form-group">
+                <label for="Uniformity_of_cell_shape">Uniformity of Cell 
 Shape:</label>
-        <input type="text" name="Uniformity_of_cell_shape" required><br>
+                <input type="text" name="Uniformity_of_cell_shape" 
+required placeholder="Enter value for Uniformity of Cell Shape">
+            </div>
 
-        <label for="Marginal_adhesion">Marginal Adhesion:</label>
-        <input type="text" name="Marginal_adhesion" required><br>
+            <div class="form-group">
+                <label for="Marginal_adhesion">Marginal Adhesion:</label>
+                <input type="text" name="Marginal_adhesion" required 
+placeholder="Enter value for Marginal Adhesion">
+            </div>
 
-        <label for="Single_epithelial_cell_size">Single Epithelial Cell 
-Size:</label>
-        <input type="text" name="Single_epithelial_cell_size" 
-required><br>
+            <div class="form-group">
+                <label for="Single_epithelial_cell_size">Single Epithelial 
+Cell Size:</label>
+                <input type="text" name="Single_epithelial_cell_size" 
+required placeholder="Enter value for Single Epithelial Cell Size">
+            </div>
 
-        <label for="Bare_nuclei">Bare Nuclei:</label>
-        <input type="text" name="Bare_nuclei" required><br>
+            <div class="form-group">
+                <label for="Bare_nuclei">Bare Nuclei:</label>
+                <input type="text" name="Bare_nuclei" required 
+placeholder="Enter value for Bare Nuclei">
+            </div>
 
-        <label for="Bland_chromatin">Bland Chromatin:</label>
-        <input type="text" name="Bland_chromatin" required><br>
+            <div class="form-group">
+                <label for="Bland_chromatin">Bland Chromatin:</label>
+                <input type="text" name="Bland_chromatin" required 
+placeholder="Enter value for Bland Chromatin">
+            </div>
 
-        <label for="Normal_nucleoli">Normal Nucleoli:</label>
-        <input type="text" name="Normal_nucleoli" required><br>
+            <div class="form-group">
+                <label for="Normal_nucleoli">Normal Nucleoli:</label>
+                <input type="text" name="Normal_nucleoli" required 
+placeholder="Enter value for Normal Nucleoli">
+            </div>
 
-        <label for="Mitoses">Mitoses:</label>
-        <input type="text" name="Mitoses" required><br>
+            <div class="form-group">
+                <label for="Mitoses">Mitoses:</label>
+                <input type="text" name="Mitoses" required 
+placeholder="Enter value for Mitoses">
+            </div>
 
-        <button type="submit">Predict</button>
-    </form>
+            <button type="submit">Predict</button>
+        </form>
 
-	<!-- Display prediction result if available -->
-    {% if prediction %}
-        <h3>Prediction Result: {{ prediction }}</h3>
-    {% endif %}
+        <!-- Display prediction result if available -->
+        {% if prediction %}
+            <div class="prediction">
+                <h3>Prediction Result: {{ prediction }}</h3>
+            </div>
+        {% endif %}
+    </div>
 
 </body>
 </html>
